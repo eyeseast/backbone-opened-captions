@@ -8,7 +8,6 @@ A transcript stores text we pull in from OpenedCaptions.
 Each of these options can be overridden in `options`.
 
  - socket: a `socket.io` connection using autodiscovery
- - view: a `TranscriptView` instance, attached to this model
 ***/
 
 var OPENED_CAPTIONS_URL = "http://openedcaptions.com:3000";
@@ -27,8 +26,6 @@ var Transcript = Backbone.Model.extend({
         
         this.socket = options.socket || io.connect(OPENED_CAPTIONS_URL);
         this.socket.on('message', this.handleMessage);
-        
-        this.view = options.view || new TranscriptView({ model: this });
     },
 
     handleMessage: function(message) {
