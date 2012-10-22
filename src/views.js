@@ -31,15 +31,18 @@ var TranscriptView = Backbone.View.extend({
             .replace(/>>/g, '\n\n>>');
     },
 
+    scroll: function() {
+        if (this.textarea[0] && this.scrollEnabled) {
+            this.textarea[0].scrollTop = this.textarea[0].scrollHeight;
+        }
+    },
+
+    scrollEnabled: false,
+
     updateText: function(model, body, e) {
         var body = this.model.get('body');
         this.textarea.val(this.formatText(body));
         this.scroll();
-    },
-
-    scroll: function() {
-        if (this.textarea) {
-            this.textarea[0].scrollTop = this.textarea[0].scrollHeight;
-        }
     }
+
 });
